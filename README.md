@@ -142,4 +142,4 @@ This project is licensed under the MIT License. See LICENSE.md for full details.
 📧 Contact
 Developed by Nabaraj Acharya
 🌐 Website: nabrajacharya.com.np
-📧 Email: hello@nabrajacharya.com.np
+📧 Email: support@nabrajacharya.com.np
