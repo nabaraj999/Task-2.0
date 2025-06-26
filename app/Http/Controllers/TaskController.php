@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Task;
 use App\Models\Status;
 use App\Models\User;
@@ -55,6 +56,52 @@ class TaskController extends Controller
 
         Task::create($data);
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+    }
+
+    public function edit(Task $task)
+    {
+        if ($task->created_by !== Auth::id()) {
+            return redirect()->route('tasks.index')->with('error', 'Unauthorized to edit this task.');
+        }
+        $users = User::all();
+        $statuses = Status::all();
+        return view('tasks.edit', compact('task', 'users', 'statuses'));
+    }
+
+    public function update(Request $request, Task $task)
+    {
+        if ($task->created_by !== Auth::id()) {
+            return redirect()->route('tasks.index')->with('error', 'Unauthorized to edit this task.');
+        }
+
+        $request->validate([
+            'description' => 'required',
+            'image' => 'nullable|image|max:2048',
+            'status_id' => 'required|exists:statuses,id',
+            'assigned_to' => 'nullable|exists:users,id',
+        ]);
+
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        } else {
+            $data['image'] = $task->image; // Retain existing image if not updated
+        }
+        $data['assigned_date'] = $request->assigned_to ? now() : null;
+        $data['completed_date'] = $request->status_id == 3 ? now() : null;
+
+        $task->update($data);
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+    }
+
+    public function destroy(Task $task)
+    {
+        if ($task->created_by !== Auth::id()) {
+            return redirect()->route('tasks.index')->with('error', 'Unauthorized to delete this task.');
+        }
+
+        $task->delete();
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 
     public function updateStatus(Request $request, Task $task)

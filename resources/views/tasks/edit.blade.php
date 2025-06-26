@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Create Task</h1>
-        <form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data" class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Task</h1>
+        <form method="POST" action="{{ route('tasks.update', $task) }}" enctype="multipart/form-data" class="max-w-2xl mx-auto">
             @csrf
+            @method('PUT')
             <div class="mb-6">
                 <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                 <textarea
@@ -12,13 +13,16 @@
                     class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
                     rows="5"
                     required
-                ></textarea>
+                >{{ old('description', $task->description) }}</textarea>
                 @error('description')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-6">
                 <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Image (Optional)</label>
+                @if($task->image)
+                    <img src="{{ asset('storage/' . $task->image) }}" class="w-full h-auto max-h-24 object-cover rounded-md mb-2" alt="Current Task Image">
+                @endif
                 <input
                     type="file"
                     name="image"
@@ -39,7 +43,7 @@
                     required
                 >
                     @foreach($statuses as $status)
-                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        <option value="{{ $status->id }}" {{ old('status_id', $task->status_id) == $status->id ? 'selected' : '' }}>{{ $status->name }}</option>
                     @endforeach
                 </select>
                 @error('status_id')
@@ -55,19 +59,27 @@
                 >
                     <option value="">Unassigned</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option value="{{ $user->id }}" {{ old('assigned_to', $task->assigned_to) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                     @endforeach
                 </select>
                 @error('assigned_to')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
-            <button
-                type="submit"
-                class="w-full bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-                Create Task
-            </button>
+            <div class="flex space-x-4">
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Update Task
+                </button>
+                <a
+                    href="{{ route('tasks.index') }}"
+                    class="w-full bg-gray-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-gray-700 transition text-center"
+                >
+                    Cancel
+                </a>
+            </div>
         </form>
     </div>
 @endsection
