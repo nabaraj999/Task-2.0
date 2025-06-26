@@ -27,17 +27,11 @@ Admin dashboard includes task assignment and monitoring of all users.
 
 🛠️ Tech Stack
 PHP 8.1+
-
 Laravel 10+
-
 Blade Templating Engine
-
 jQuery + SortableJS
-
 Tailwind CSS 3.x
-
 MySQL
-
 Node.js + NPM
 
 📦 Installation & Setup
@@ -45,8 +39,8 @@ Node.js + NPM
 bash
 Copy
 Edit
-git clone https://github.com/your-username/task-manager.git
-cd task-manager
+git clone https://github.com/nabaraj999/Task-2.0.git
+cd Task-2.0
 2. Install PHP & JS Dependencies
 bash
 Copy
