@@ -1,97 +1,151 @@
-Task Manager
-A Trello-like task management application built with Laravel, Blade, jQuery, SortableJS, and Tailwind CSS. This project allows users to create, edit, delete, and assign tasks, move them between statuses using drag-and-drop, and filter tasks by user, status, or date. The interface is modern, responsive, and user-friendly, designed for efficient task management.
-Features
+📋 Task Manager – A Trello-Like Task Management System
+Task Manager is a powerful, responsive, and user-friendly Laravel-based task management platform inspired by Trello. Designed and developed by Nabaraj Acharya, this app helps teams efficiently create, assign, organize, and track tasks through a drag-and-drop interface.
 
-User Authentication: Register and log in to manage tasks securely.
-Task Management: Create, edit, and delete tasks (restricted to task creators).
-Task Assignment: Assign tasks to users with optional image uploads.
-Drag-and-Drop: Move tasks between statuses (To Do, In Progress, Done).
-Task Filtering: Filter tasks by user, status, or creation date.
-Responsive UI: Modern, user-friendly interface styled with Tailwind CSS.
+Built using Laravel, Blade, Tailwind CSS, jQuery, and SortableJS, this system is ideal for personal productivity or collaborative team environments.
 
-Prerequisites
+🚀 Features
+✅ User Authentication
+Secure registration and login for user-specific task management.
 
-PHP 8.1 or higher
-Composer
+✅ Task CRUD & Ownership
+Create, update, and delete tasks (only accessible by the task creator).
+
+✅ Task Assignment
+Assign tasks to registered users and optionally upload task-related images.
+
+✅ Drag & Drop Interface
+Move tasks smoothly between To Do, In Progress, and Done using SortableJS.
+
+✅ Advanced Filtering
+Filter tasks by assignee, status, or creation date.
+
+✅ Responsive UI
+Modern Tailwind CSS layout ensures usability across all devices.
+
+✅ Role Differentiation
+Admin dashboard includes task assignment and monitoring of all users.
+
+🛠️ Tech Stack
+PHP 8.1+
+
+Laravel 10+
+
+Blade Templating Engine
+
+jQuery + SortableJS
+
+Tailwind CSS 3.x
+
 MySQL
-Node.js and npm
 
-Setup Instructions
+Node.js + NPM
 
-Clone the Repository:
-git clone https://github.com/nabraj999/task2.0
-cd task2.0
-
-
-Install Dependencies:
+📦 Installation & Setup
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/your-username/task-manager.git
+cd task-manager
+2. Install PHP & JS Dependencies
+bash
+Copy
+Edit
 composer install
 npm install
+3. Configure Environment
+Create and edit .env file:
 
-
-Configure Environment:
-
-Copy .env.example to .env and update database credentials:DB_CONNECTION=mysql
+env
+Copy
+Edit
+DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=task_manager
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
+DB_USERNAME=your_db_username
+DB_PASSWORD=your_db_password
+Generate keys and cache config:
 
-
-
-
-Run Migrations:
+bash
+Copy
+Edit
+php artisan key:generate
+php artisan config:cache
+4. Run Migrations & Seeders
+bash
+Copy
+Edit
 php artisan migrate
-
-
-Seed Statuses:
 php artisan db:seed --class=StatusSeeder
-
-
-Link Storage:
+5. Link Storage
+bash
+Copy
+Edit
 php artisan storage:link
-
-
-Compile Assets:
+6. Compile Frontend Assets
+bash
+Copy
+Edit
 npm run dev
-
-
-Start the Server:
+7. Launch Development Server
+bash
+Copy
+Edit
 php artisan serve
+Visit: http://localhost:8000
 
+👨‍💻 Usage Guide
+🔑 Register/Login: Go to /register or /login to access your dashboard.
 
-Access the application at http://localhost:8000.
+➕ Add Task: Click “Add Task” to input details including optional image and assignee.
 
+✏️ Edit/Delete: Manage your created tasks through contextual buttons.
 
+🧲 Drag Tasks: Organize your workflow by dragging tasks between columns.
 
-Usage
+🔍 Filter: Use filter form to narrow tasks by user, status, or date.
 
-Register: Visit /register to create an account.
-Login: Visit /login to sign in.
-Task Manager: After login, you’re redirected to /tasks where you can:
-Add Tasks: Click "Add Task" to create a new task with a description, optional image, status, and assignee.
-Edit/Delete Tasks: Edit or delete tasks you created using the respective buttons.
-Drag-and-Drop: Move tasks between To Do, In Progress, and Done columns.
-Filter Tasks: Use the filter form to view tasks by user, status, or date.
+🛠️ Admin Functionality
+Admins have the ability to:
 
+View all tasks from all users
 
+Assign tasks to users
 
-Contributing
-Contributions are welcome! To contribute:
+Filter based on progress and assigned users
 
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Make your changes and commit (git commit -m 'Add your feature').
-Push to the branch (git push origin feature/your-feature).
-Open a pull request.
+Monitor project status
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-Contact
-For questions or feedback, contact your-email@example.com.
-Troubleshooting
+🐞 Troubleshooting
+Problem	Solution
+Undefined variable $slot	Ensure all views use @extends('layouts.app') and wrap content in @section('content').
+Styles not applying	Re-run npm run dev or npm run build.
+DB Connection Issues	Verify .env file DB settings, try php artisan migrate:fresh.
+Image upload not working	Run php artisan storage:link and ensure storage/app/public is writable.
+Tasks not draggable	Confirm SortableJS is loaded correctly in your scripts.
 
-Undefined variable $slot: Ensure views use @extends('layouts.app') with @section('content'). Clear caches with php artisan view:clear.
-Styles not applying: Run npm run dev or npm run build to compile Tailwind CSS.
-Database errors: Verify .env credentials and run php artisan migrate:fresh.
-Image upload issues: Ensure storage is linked (php artisan storage:link) and the images directory is writable.
+🤝 Contributing
+We welcome contributors to enhance the project:
+
+bash
+Copy
+Edit
+# Step 1: Fork the repo
+# Step 2: Create a branch
+git checkout -b feature/my-feature
+
+# Step 3: Commit changes
+git commit -m "Add my feature"
+
+# Step 4: Push to branch
+git push origin feature/my-feature
+
+# Step 5: Submit Pull Request
+📜 License
+This project is licensed under the MIT License. See LICENSE.md for full details.
+
+📧 Contact
+Developed by Nabaraj Acharya
+🌐 Website: nabrajacharya.com.np
+📧 Email: hello@nabrajacharya.com.np
