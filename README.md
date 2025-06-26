@@ -1,145 +1,171 @@
-📋 Task Manager – A Trello-Like Task Management System
-Task Manager is a powerful, responsive, and user-friendly Laravel-based task management platform inspired by Trello. Designed and developed by Nabaraj Acharya, this app helps teams efficiently create, assign, organize, and track tasks through a drag-and-drop interface.
 
-Built using Laravel, Blade, Tailwind CSS, jQuery, and SortableJS, this system is ideal for personal productivity or collaborative team environments.
+# 📋 Task Manager – A Trello-Like Task Management System
 
-🚀 Features
-✅ User Authentication
-Secure registration and login for user-specific task management.
+**Task Manager** is a responsive, modern, and easy-to-use task management application built with Laravel, Blade, Tailwind CSS, jQuery, and SortableJS. It allows teams and individuals to efficiently create, manage, and track tasks using a drag-and-drop interface.
 
-✅ Task CRUD & Ownership
-Create, update, and delete tasks (only accessible by the task creator).
+> Developed by [Nabaraj Acharya](https://nabrajacharya.com.np)
 
-✅ Task Assignment
-Assign tasks to registered users and optionally upload task-related images.
+---
 
-✅ Drag & Drop Interface
-Move tasks smoothly between To Do, In Progress, and Done using SortableJS.
+## 🚀 Features
 
-✅ Advanced Filtering
-Filter tasks by assignee, status, or creation date.
+- 🔐 **User Authentication** – Secure login and registration
+- ✅ **Task CRUD & Ownership** – Create, edit, and delete own tasks
+- 👥 **Task Assignment** – Assign tasks to users, upload images
+- 🧲 **Drag & Drop** – Move tasks between "To Do", "In Progress", and "Done"
+- 🔍 **Advanced Filtering** – Filter tasks by user, status, or date
+- 📱 **Responsive UI** – Built with Tailwind CSS for all devices
+- 🧑‍💼 **Admin Role** – Full task visibility and assignment capability
 
-✅ Responsive UI
-Modern Tailwind CSS layout ensures usability across all devices.
+---
 
-✅ Role Differentiation
-Admin dashboard includes task assignment and monitoring of all users.
+## 🛠️ Tech Stack
 
-🛠️ Tech Stack
-PHP 8.1+
-Laravel 10+
-Blade Templating Engine
-jQuery + SortableJS
-Tailwind CSS 3.x
-MySQL
-Node.js + NPM
+| Category        | Tech                      |
+|-----------------|---------------------------|
+| Backend         | PHP 8.1+, Laravel 10+     |
+| Frontend        | Blade, Tailwind CSS 3.x   |
+| Interactivity   | jQuery, SortableJS        |
+| Database        | MySQL                     |
+| Build Tools     | Node.js + NPM             |
 
-📦 Installation & Setup
-1. Clone the Repository
-bash
-Copy
-Edit
+---
+
+## 📦 Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/nabaraj999/Task-2.0.git
 cd Task-2.0
-2. Install PHP & JS Dependencies
-bash
-Copy
-Edit
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
 composer install
 npm install
-3. Configure Environment
-Create and edit .env file:
+```
 
-env
-Copy
-Edit
+### 3️⃣ Configure Environment
+
+Copy `.env.example` to `.env` and set database credentials:
+
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=task_manager
 DB_USERNAME=your_db_username
 DB_PASSWORD=your_db_password
-Generate keys and cache config:
+```
 
-bash
-Copy
-Edit
+Generate app key and cache config:
+
+```bash
 php artisan key:generate
 php artisan config:cache
-4. Run Migrations & Seeders
-bash
-Copy
-Edit
+```
+
+### 4️⃣ Run Migrations & Seeders
+
+```bash
 php artisan migrate
 php artisan db:seed --class=StatusSeeder
-5. Link Storage
-bash
-Copy
-Edit
+```
+
+### 5️⃣ Link Storage
+
+```bash
 php artisan storage:link
-6. Compile Frontend Assets
-bash
-Copy
-Edit
+```
+
+### 6️⃣ Compile Assets
+
+```bash
 npm run dev
-7. Launch Development Server
-bash
-Copy
-Edit
+```
+
+### 7️⃣ Start the Server
+
+```bash
 php artisan serve
-Visit: http://localhost:8000
+```
 
-👨‍💻 Usage Guide
-🔑 Register/Login: Go to /register or /login to access your dashboard.
+Visit: [http://localhost:8000](http://localhost:8000)
 
-➕ Add Task: Click “Add Task” to input details including optional image and assignee.
+---
 
-✏️ Edit/Delete: Manage your created tasks through contextual buttons.
+## 👨‍💻 Usage
 
-🧲 Drag Tasks: Organize your workflow by dragging tasks between columns.
+### 🔑 Register/Login
 
-🔍 Filter: Use filter form to narrow tasks by user, status, or date.
+Visit `/register` or `/login` to get started.
 
-🛠️ Admin Functionality
-Admins have the ability to:
+### ➕ Add Tasks
 
-View all tasks from all users
+Click “Add Task” and fill in task details. Assign to user and upload image if needed.
 
-Assign tasks to users
+### ✏️ Edit/Delete
 
-Filter based on progress and assigned users
+You can edit or delete only your own tasks.
 
-Monitor project status
+### 🧲 Drag & Drop
 
-🐞 Troubleshooting
-Problem	Solution
-Undefined variable $slot	Ensure all views use @extends('layouts.app') and wrap content in @section('content').
-Styles not applying	Re-run npm run dev or npm run build.
-DB Connection Issues	Verify .env file DB settings, try php artisan migrate:fresh.
-Image upload not working	Run php artisan storage:link and ensure storage/app/public is writable.
-Tasks not draggable	Confirm SortableJS is loaded correctly in your scripts.
+Use drag-and-drop to move tasks across stages.
 
-🤝 Contributing
-We welcome contributors to enhance the project:
+### 🔍 Filter Tasks
 
-bash
-Copy
-Edit
-# Step 1: Fork the repo
-# Step 2: Create a branch
-git checkout -b feature/my-feature
+Filter by user, status, or creation date using the search form.
 
-# Step 3: Commit changes
-git commit -m "Add my feature"
+---
 
-# Step 4: Push to branch
-git push origin feature/my-feature
+## 🛠️ Admin Features
 
-# Step 5: Submit Pull Request
-📜 License
-This project is licensed under the MIT License. See LICENSE.md for full details.
+- 🔎 View tasks from all users
+- 📌 Assign tasks to any user
+- 🗃️ Filter tasks by status, user, or date
+- 📈 Monitor project progress
 
-📧 Contact
-Developed by Nabaraj Acharya
-🌐 Website: nabrajacharya.com.np
-📧 Email: support@nabrajacharya.com.np
+---
+
+## 🐞 Troubleshooting
+
+| Problem                        | Solution                                                                 |
+|-------------------------------|--------------------------------------------------------------------------|
+| `Undefined variable $slot`    | Use `@extends('layouts.app')` and wrap views with `@section('content')` |
+| Styles not applying           | Run `npm run dev` or `npm run build`                                    |
+| DB connection error           | Check `.env` database config and rerun `php artisan migrate`             |
+| Image upload not working      | Run `php artisan storage:link` and check storage permissions             |
+| Tasks not draggable           | Ensure SortableJS is correctly loaded in Blade files                     |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! To contribute:
+
+```bash
+# Fork the repo and create a feature branch
+git checkout -b feature/your-feature
+
+# Make your changes and commit
+git commit -m "Added my feature"
+
+# Push to GitHub and submit a Pull Request
+git push origin feature/your-feature
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more details.
+
+---
+
+## 📧 Contact
+
+**Nabaraj Acharya**  
+🌐 [nabrajacharya.com.np](https://nabrajacharya.com.np)  
+📧 [support@nabrajacharya.com.np](mailto:support@nabrajacharya.com.np)
