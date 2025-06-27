@@ -28,13 +28,6 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'users', 'statuses'));
     }
 
-    public function create()
-    {
-        $users = User::all();
-        $statuses = Status::all();
-        return view('tasks.create', compact('users', 'statuses'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -54,24 +47,22 @@ class TaskController extends Controller
             $data['image'] = $request->file('image')->store('images', 'public');
         }
 
-        Task::create($data);
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        $task = Task::create($data);
+        return response()->json(['success' => true, 'message' => 'Task created successfully!', 'task' => $task->load('assignee')]);
     }
 
     public function edit(Task $task)
     {
         if ($task->created_by !== Auth::id()) {
-            return redirect()->route('tasks.index')->with('error', 'Unauthorized to edit this task.');
+            return response()->json(['error' => 'Unauthorized to edit this task.'], 403);
         }
-        $users = User::all();
-        $statuses = Status::all();
-        return view('tasks.edit', compact('task', 'users', 'statuses'));
+        return response()->json(['task' => $task->load('assignee')]);
     }
 
     public function update(Request $request, Task $task)
     {
         if ($task->created_by !== Auth::id()) {
-            return redirect()->route('tasks.index')->with('error', 'Unauthorized to edit this task.');
+            return response()->json(['error' => 'Unauthorized to edit this task.'], 403);
         }
 
         $request->validate([
@@ -85,23 +76,23 @@ class TaskController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         } else {
-            $data['image'] = $task->image; // Retain existing image if not updated
+            $data['image'] = $task->image;
         }
         $data['assigned_date'] = $request->assigned_to ? now() : null;
         $data['completed_date'] = $request->status_id == 3 ? now() : null;
 
         $task->update($data);
-        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+        return response()->json(['success' => true, 'message' => 'Task updated successfully!', 'task' => $task->load('assignee')]);
     }
 
     public function destroy(Task $task)
     {
         if ($task->created_by !== Auth::id()) {
-            return redirect()->route('tasks.index')->with('error', 'Unauthorized to delete this task.');
+            return response()->json(['error' => 'Unauthorized to delete this task.'], 403);
         }
 
         $task->delete();
-        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully!']);
     }
 
     public function updateStatus(Request $request, Task $task)
