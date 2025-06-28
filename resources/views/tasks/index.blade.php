@@ -51,7 +51,8 @@
                             <div class="task-card bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-lg transition cursor-move" data-task-id="{{ $task->id }}">
                                 <p class="text-gray-700 font-medium">{{ $task->description }}</p>
                                 @if($task->image)
-                                    <img src="{{ asset('storage/' . $task->image) }}" class="w-full h-auto max-h-54 object-cover rounded-md mt-2" alt="Task Image">
+                                    <img src="{{ asset('storage/' . $task->image) }}" class="w-full h-auto max-h-5
+                                    4 object-cover rounded-md mt-2" alt="Task Image">
                                 @endif
                                 <p class="text-sm text-gray-600 mt-2">Assigned to: {{ $task->assignee ? $task->assignee->name : 'Unassigned' }}</p>
                                 <p class="text-sm text-gray-600">Created: {{ $task->created_date }}</p>
